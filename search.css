@@ -1,0 +1,71 @@
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Search Box */
+.search-box-container {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+#toolSearchInput {
+  width: 100%;
+  max-width: 380px;
+  padding: 10px 15px;
+  border-radius: 30px;
+  border: 2px solid #ff4d6d;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+#toolSearchInput:focus {
+  outline: none;
+  border-color: #ff1f4b;
+  box-shadow: 0 0 10px rgba(255, 31, 75, 0.3);
+}
+
+/* Tools Grid */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px;
+}
+
+.tool-card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 20px 10px;
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+  border: 1px solid #f5f5f5;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tool-card img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 12px;
+}
+
+.tool-card span {
+  display: block;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.tool-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(255, 77, 109, 0.25);
+  border-color: #ff4d6d;
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #777;
+  font-size: 14px;
+}
