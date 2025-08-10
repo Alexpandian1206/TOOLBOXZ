@@ -1,4 +1,3 @@
-<script>
   const searchInput = document.getElementById('toolSearchInput');
   const resultsContainer = document.getElementById('toolSearchResults');
   const toolCards = Array.from(resultsContainer.querySelectorAll('.tool-card'));
@@ -27,4 +26,3 @@
       });
     }
   });
-</script>
