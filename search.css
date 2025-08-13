@@ -1,3 +1,33 @@
+/* Icon in header */
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.search-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: #ff4d6d;
+  stroke-width: 2;
+  fill: none;
+}
+
+.search-icon:hover {
+  transform: scale(1.2);
+}
+
 /* Overlay background */
 #searchOverlay {
   display: none;
@@ -10,7 +40,6 @@
   padding-top: 80px;
 }
 
-/* Show overlay when active */
 #searchOverlay.active {
   display: flex;
 }
@@ -30,7 +59,6 @@
   margin-bottom: 20px;
 }
 
-/* Results grid */
 .tools-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
