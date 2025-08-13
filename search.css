@@ -1,23 +1,18 @@
-/* Search icon container */
+/* Search icon styles */
 .search-box {
   position: relative;
-  display: inline-flex !important; /* always visible inline */
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-left: 10px;
+  cursor: pointer;
 }
 
-/* Search icon button */
 .search-icon {
-  cursor: pointer;
   width: 36px;
   height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: transparent;
-  transition: transform 0.3s, background 0.3s;
 }
 
 .search-icon img {
@@ -25,18 +20,14 @@
   height: 24px;
   object-fit: contain;
   display: block;
+  transition: transform 0.3s;
 }
 
-/* Hover effect */
-.search-icon:hover {
+.search-icon:hover img {
   transform: scale(1.2);
 }
 
-.search-icon:hover svg {
-  stroke: #ff4d6d !important; /* pink hover */
-}
-
-/* Search overlay */
+/* Overlay styles */
 #searchOverlay {
   display: none;
   position: fixed;
@@ -106,12 +97,3 @@
   text-align: center;
   color: #777;
 }
-
-.search-icon:hover {
-  transform: scale(1.2);
-}
-
-.search-icon:hover img {
-  filter: brightness(0) saturate(100%) invert(45%) sepia(100%) saturate(464%) hue-rotate(330deg);
-}
-
