@@ -50,7 +50,7 @@
   max-width: 900px;
 }
 
-#toolSearchInput {
+#searchInput {
   width: 100%;
   padding: 12px 15px;
   font-size: 16px;
@@ -59,13 +59,13 @@
   margin-bottom: 20px;
 }
 
-.tools-grid {
+.search-tools-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: 18px;
 }
 
-.tool-card {
+.search-tool-card {
   background: #fff;
   border-radius: 15px;
   padding: 20px 10px;
@@ -77,24 +77,24 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.tool-card img {
+.search-tool-card img {
   width: 60px;
   height: 60px;
   margin-bottom: 12px;
 }
 
-.tool-card span {
+.search-tool-card span {
   display: block;
   font-weight: 600;
   font-size: 15px;
 }
 
-.tool-card:hover {
+.search-tool-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(255, 77, 109, 0.25);
 }
 
-.no-results {
+.search-no-results {
   grid-column: 1 / -1;
   text-align: center;
   color: #777;
