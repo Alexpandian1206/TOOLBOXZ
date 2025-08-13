@@ -20,14 +20,11 @@
   transition: transform 0.3s, background 0.3s;
 }
 
-/* SVG magnifying glass */
-.search-icon svg {
+.search-icon img {
   width: 24px;
   height: 24px;
-  stroke: #000 !important; /* always visible black */
-  stroke-width: 2;
-  fill: none;
-  transition: stroke 0.3s;
+  object-fit: contain;
+  display: block;
 }
 
 /* Hover effect */
