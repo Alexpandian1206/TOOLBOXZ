@@ -19,7 +19,7 @@ document.addEventListener('keydown', e => {
 const searchInput = document.getElementById('toolSearchInput');
 const resultsContainer = document.getElementById('toolSearchResults');
 
-// Example tools list (replace with your own)
+// Example tools list (replace with yours)
 const tools = [
   { name: "Word to PDF Converter", link: "word-to-pdf.html", icon: "images/word-to-pdf.png" },
   { name: "PDF to Word Converter", link: "pdf-to-word.html", icon: "images/pdf-to-word.png" },
