@@ -50,3 +50,12 @@ searchInputEl.addEventListener('input', function () {
     searchResultsEl.appendChild(card);
   });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const searchIcon = document.querySelector('.search-icon');
+  if (searchIcon) {
+    searchIcon.addEventListener('click', function() {
+      openSearch(); // Call your existing function
+    });
+  }
+});
