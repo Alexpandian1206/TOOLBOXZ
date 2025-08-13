@@ -1,32 +1,36 @@
-.container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 20px;
+/* Overlay background */
+#searchOverlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.98);
+  z-index: 9999;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 80px;
 }
 
-/* Search Box */
-.search-box-container {
-  text-align: center;
-  margin-bottom: 25px;
+/* Show overlay when active */
+#searchOverlay.active {
+  display: flex;
+}
+
+/* Overlay content */
+.search-overlay-content {
+  width: 90%;
+  max-width: 900px;
 }
 
 #toolSearchInput {
   width: 100%;
-  max-width: 380px;
-  padding: 10px 15px;
+  padding: 12px 15px;
+  font-size: 16px;
   border-radius: 30px;
   border: 2px solid #ff4d6d;
-  font-size: 16px;
-  transition: 0.3s;
+  margin-bottom: 20px;
 }
 
-#toolSearchInput:focus {
-  outline: none;
-  border-color: #ff1f4b;
-  box-shadow: 0 0 10px rgba(255, 31, 75, 0.3);
-}
-
-/* Tools Grid */
+/* Results grid */
 .tools-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -60,37 +64,10 @@
 .tool-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(255, 77, 109, 0.25);
-  border-color: #ff4d6d;
 }
 
 .no-results {
   grid-column: 1 / -1;
   text-align: center;
   color: #777;
-  font-size: 14px;
 }
-
-#searchOverlay {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(255,255,255,0.98);
-  z-index: 9999;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 80px;
-}
-
-#searchOverlay.active {
-  display: flex;
-}
-
-.search-overlay-content {
-  width: 90%;
-  max-width: 900px;
-}
-
-#toolSearchResults {
-  margin-top: 20px;
-}
-
