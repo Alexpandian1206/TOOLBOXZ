@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const input = document.getElementById('searchInput');
     const results = document.getElementById('searchResults');
 
-    // Example tool list - replace with your real data
     const tools = [
         { name: 'Tool 1', link: '#', img: 'https://via.placeholder.com/60' },
         { name: 'Tool 2', link: '#', img: 'https://via.placeholder.com/60' },
@@ -14,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Open overlay
     openBtn.addEventListener('click', () => {
         overlay.classList.add('active');
-        input.focus();
+        setTimeout(() => input.focus(), 300);
         populateResults('');
     });
 
@@ -28,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.key === 'Escape') overlay.classList.remove('active');
     });
 
-    // Populate results
     function populateResults(query) {
         results.innerHTML = '';
         const filter = query.toLowerCase();
@@ -47,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Live search
     input.addEventListener('input', function() {
         populateResults(this.value);
     });
