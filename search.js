@@ -5,7 +5,7 @@ function openSearch() {
 
 function closeSearch() {
   document.getElementById('searchOverlay').classList.remove('active');
-  document.getElementById('toolSearchResults').innerHTML = ''; // clear results
+  document.getElementById('toolSearchResults').innerHTML = '';
 }
 
 function outsideClick(e) {
@@ -19,7 +19,7 @@ document.addEventListener('keydown', e => {
 const searchInput = document.getElementById('toolSearchInput');
 const resultsContainer = document.getElementById('toolSearchResults');
 
-// Array of tools (you can fetch from HTML or create a list)
+// Example tools list (replace with your own)
 const tools = [
   { name: "Word to PDF Converter", link: "word-to-pdf.html", icon: "images/word-to-pdf.png" },
   { name: "PDF to Word Converter", link: "pdf-to-word.html", icon: "images/pdf-to-word.png" },
@@ -33,7 +33,7 @@ searchInput.addEventListener('input', function () {
   const query = this.value.trim().toLowerCase();
   resultsContainer.innerHTML = '';
 
-  if (query === '') return; // don't show tools until user types
+  if (query === '') return;
 
   const filtered = tools.filter(tool => tool.name.toLowerCase().includes(query));
 
