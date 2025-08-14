@@ -31,7 +31,7 @@ body {
 
 .search-box input {
   width: 100%;
-  padding: 12px 42px 12px 18px; /* space for icon */
+  padding: 12px 42px 12px 18px; /* right padding for icon */
   font-size: 15px;
   font-weight: 500;
   border-radius: 30px;
@@ -50,12 +50,13 @@ body {
 
 .search-icon {
   position: absolute;
-  right: 12px;
+  right: 12px; /* inside input */
   top: 50%;
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
   cursor: pointer;
+  transition: transform 0.3s ease, stroke 0.3s ease;
 }
 
 .search-icon svg {
@@ -66,7 +67,12 @@ body {
   fill: none;
 }
 
-/* Mobile: full-width search bar */
+.search-icon:hover {
+  transform: translateY(-50%) scale(1.2);
+  stroke: #ff9900;
+}
+
+/* Mobile full-width search */
 @media(max-width:768px){
   .search-box {
     width: 100%;
@@ -80,60 +86,6 @@ body {
   }
 }
 
-/* SIDEBAR */
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: -280px;
-  width: 260px;
-  height: 100vh;
-  background: #fff;
-  color: #333;
-  box-shadow: 2px 0 12px rgba(0,0,0,0.1);
-  transition: 0.4s ease;
-  padding: 60px 20px;
-  z-index: 2000;
-  display: flex;
-  flex-direction: column;
-}
-
-.sidebar.active {
-  left: 0;
-}
-
-.sidebar .close-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 28px;
-  cursor: pointer;
-  color: #ff4d6d;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin-top: 50px;
-}
-
-.sidebar ul li {
-  padding: 12px 0;
-  cursor: pointer;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-.sidebar ul li:hover {
-  color: #ff4d6d;
-  transform: translateX(5px);
-}
-
-.sidebar ul li.active {
-  color: #fff;
-  background: #ff4d6d;
-  padding-left: 10px;
-  border-radius: 8px;
-}
 
 /* BUBBLE MENU */
 .bubble-menu {
