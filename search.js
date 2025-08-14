@@ -80,23 +80,27 @@ overlaySearchInput.addEventListener('input', function () {
 });
 
 // =======================
-// TOOL CARD ANIMATION (LAZY LOAD) - PREMIUM VERSION
+// TOOL CARD ANIMATION 
 // =======================
 function lazyLoad(container = document) {
   const cards = container.querySelectorAll('.tool-card');
+  
+  // Reset each card
   cards.forEach(card => {
     card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
+    card.style.transform = 'translateY(25px)';
+    card.style.transition = 'none';
     card.classList.remove('visible');
   });
 
+  // Animate with stagger
   cards.forEach((card, i) => {
     setTimeout(() => {
-      card.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+      card.style.transition = 'opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
       card.style.opacity = '1';
       card.style.transform = 'translateY(0)';
       card.classList.add('visible');
-    }, i * 100); // staggered by 100ms
+    }, i * 120); // stagger 120ms for smoother sequence
   });
 }
 
