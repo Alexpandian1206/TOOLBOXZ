@@ -1,38 +1,58 @@
+/* Search icon container */
 .search-box {
   position: relative;
+  display: inline-flex !important; /* always visible inline */
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+}
+
+/* Search icon button */
+.search-icon {
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: transparent;
+  transition: transform 0.3s, background 0.3s;
 }
 
-.search-icon img {
-  width: 28px;
-  height: 28px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+/* SVG magnifying glass */
+.search-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: #000 !important; /* always visible black */
+  stroke-width: 2;
+  fill: none;
+  transition: stroke 0.3s;
 }
 
-.search-icon img:hover {
-  transform: scale(1.1);
+/* Hover effect */
+.search-icon:hover {
+  transform: scale(1.2);
 }
 
-/* Overlay - transition method */
+.search-icon:hover svg {
+  stroke: #ff4d6d !important; /* pink hover */
+}
+
+/* Search overlay */
 #searchOverlay {
+  display: none;
   position: fixed;
   inset: 0;
   background: rgba(255, 255, 255, 0.98);
   z-index: 9999;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  display: flex;
   justify-content: center;
   align-items: flex-start;
   padding-top: 80px;
 }
 
 #searchOverlay.active {
-  visibility: visible;
-  opacity: 1;
+  display: flex;
 }
 
 .search-overlay-content {
@@ -63,23 +83,29 @@
   text-decoration: none;
   color: #333;
   border: 1px solid #f5f5f5;
-  box-shadow: 0 0 6px rgba(0,0,0,0.05);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .search-tool-card img {
-  max-width: 60px;
-  margin-bottom: 10px;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 12px;
 }
 
 .search-tool-card span {
   display: block;
-  font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.search-tool-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(255, 77, 109, 0.25);
 }
 
 .search-no-results {
   grid-column: 1 / -1;
   text-align: center;
-  color: #666;
-  padding: 20px 0;
+  color: #777;
 }
