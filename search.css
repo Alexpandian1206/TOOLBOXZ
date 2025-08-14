@@ -35,13 +35,15 @@ body {
 
 .search-box input {
   width: 100%;
-  padding: 12px 42px 12px 18px; /* right padding for icon */
+  padding: 8px 42px 8px 18px; /* adjust for height */
   font-size: 15px;
   font-weight: 500;
   border-radius: 30px;
   border: 1px solid #ddd;
   background: linear-gradient(145deg, #ffffff, #f5f7fa);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  box-shadow: 
+    0 4px 12px rgba(255,77,109,0.2),  /* subtle pink glow */
+    0 8px 20px rgba(255,77,109,0.1);  /* soft shadow */
   transition: all 0.3s ease;
 }
 
@@ -49,8 +51,11 @@ body {
   outline: none;
   border-color: #ff4d6d;
   background: #fff;
-  box-shadow: 0 6px 20px rgba(255,77,109,0.25);
+  box-shadow: 
+    0 6px 20px rgba(255,77,109,0.3),  /* stronger pink glow on focus */
+    0 8px 25px rgba(255,77,109,0.15);
 }
+
 
 .search-icon {
   position: absolute;
