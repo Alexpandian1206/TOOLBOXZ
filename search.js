@@ -4,10 +4,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const input = document.getElementById('searchInput');
     const results = document.getElementById('searchResults');
 
+    // Demo tools data
     const tools = [
-        { name: 'Tool 1', link: '#', img: 'https://via.placeholder.com/60' },
-        { name: 'Tool 2', link: '#', img: 'https://via.placeholder.com/60' },
-        { name: 'Premium Tool', link: '#', img: 'https://via.placeholder.com/60' }
+        { name: 'SEO Analyzer', link: '#' },
+        { name: 'Image Compressor', link: '#' },
+        { name: 'Content Writer', link: '#' },
+        { name: 'Backlink Checker', link: '#' }
     ];
 
     // Open overlay
@@ -27,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.key === 'Escape') overlay.classList.remove('active');
     });
 
+    // Populate results
     function populateResults(query) {
         results.innerHTML = '';
         const filter = query.toLowerCase();
@@ -39,12 +42,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 const card = document.createElement('a');
                 card.href = tool.link;
                 card.className = 'search-tool-card';
-                card.innerHTML = `<img src="${tool.img}" alt="${tool.name}"><span>${tool.name}</span>`;
+                card.textContent = tool.name;
                 results.appendChild(card);
             });
         }
     }
 
+    // Search input listener
     input.addEventListener('input', function() {
         populateResults(this.value);
     });
