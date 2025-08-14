@@ -90,58 +90,62 @@ body {
 }
 
 
-/* ======================= */
-/* BUBBLE MENU PREMIUM */
-/* ======================= */
+/* ========================
+   BUBBLE MENU 
+   ======================== */
 .bubble-menu {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 14px; /* spacing between bubbles */
-  padding: 25px 15px; /* top-bottom, left-right */
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(8px);
-  border-radius: 30px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  margin: 20px auto;
-  max-width: 1100px;
-  transition: all 0.4s ease;
+  gap: 12px;
+  padding: 20px 10px;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(6px);
+  border-radius: 20px;
+  transition: all 0.3s ease;
 }
 
+/* Buttons */
 .bubble-menu button {
   border: none;
-  background: #f4f7fc;
+  background: linear-gradient(145deg,#ffffff,#f4f4f4);
   color: #333;
-  padding: 14px 24px; /* larger padding for premium feel */
+  padding: 12px 18px;
   border-radius: 30px;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  min-width: 100px;
+  text-align: center;
+  flex: 0 0 auto; /* JS will set exact width */
 }
 
+/* Hover effect */
 .bubble-menu button:hover {
-  background: linear-gradient(135deg, #ff4d6d, #ff9900);
+  background: linear-gradient(135deg,#ff4d6d,#ff9900);
   color: #fff;
   transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 8px 20px rgba(255, 77, 109, 0.3);
+  box-shadow: 0 4px 12px rgba(255,77,109,0.4);
 }
 
+/* Active button */
 .bubble-menu button.active {
-  background: linear-gradient(45deg, #ff4d6d, #ff9900);
+  background: linear-gradient(45deg,#ff4d6d,#ff9900);
   color: #fff;
-  box-shadow: 0 8px 24px rgba(255, 77, 109, 0.4);
+  box-shadow: 0 4px 14px rgba(255,77,109,0.5);
 }
 
+/* Hover gradient animation */
 .bubble-menu button::before {
   content: "";
   position: absolute;
   width: 120%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255, 77, 109, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255,77,109,0.2) 0%, transparent 70%);
   top: -50%;
   left: -10%;
   transform: rotate(25deg);
@@ -152,15 +156,17 @@ body {
   top: 100%;
 }
 
-/* Responsive adjustments */
-@media screen and (max-width: 768px) {
+/* Responsive for mobile */
+@media(max-width:768px) {
   .bubble-menu {
     gap: 10px;
-    padding: 20px 10px;
+    padding: 15px 5px;
   }
+
   .bubble-menu button {
-    padding: 12px 20px;
-    font-size: 14px;
+    font-size: 13px;
+    padding: 10px 14px;
+    min-width: 80px;
   }
 }
 
