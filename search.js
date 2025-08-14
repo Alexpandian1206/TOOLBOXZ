@@ -90,14 +90,16 @@ function lazyLoad(container = document) {
 }
 
 // =======================
-// BUBBLE MENU RANDOMIZER
+// BUBBLE MENU RANDOMIZER & LAYOUT
 // =======================
 const bubbleMenu = document.querySelector('.bubble-menu');
 const bubbles = [...bubbleMenu.querySelectorAll('button')];
 
+// Separate "All Tools" button and other bubbles
 const allToolsButton = bubbles.find(b => b.dataset.id === 'all');
 const otherBubbles = bubbles.filter(b => b !== allToolsButton);
 
+// Shuffle array function
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -106,14 +108,30 @@ function shuffleArray(array) {
   return array;
 }
 
+// Render bubble menu
 function renderBubbleMenu() {
   bubbleMenu.innerHTML = '';
   bubbleMenu.appendChild(allToolsButton); // always first
   const shuffled = shuffleArray(otherBubbles);
   shuffled.forEach(b => bubbleMenu.appendChild(b));
+  layoutBubbles();
   animateBubbles();
 }
 
+// Adjust bubble widths to fit container evenly
+function layoutBubbles() {
+  const containerWidth = bubbleMenu.clientWidth;
+  const buttons = bubbleMenu.querySelectorAll('button');
+  const totalGaps = (buttons.length - 1) * 12; // gap between buttons in px
+  const availableWidth = containerWidth - totalGaps;
+  const buttonWidth = Math.floor(availableWidth / buttons.length);
+
+  buttons.forEach(btn => {
+    btn.style.flex = `0 0 ${buttonWidth}px`;
+  });
+}
+
+// Animate bubbles
 function animateBubbles() {
   const currentBubbles = bubbleMenu.querySelectorAll('button');
   currentBubbles.forEach((b, i) => {
@@ -126,6 +144,11 @@ function animateBubbles() {
     }, i * 100);
   });
 }
+
+// Recalculate on window resize
+window.addEventListener('resize', () => {
+  layoutBubbles();
+});
 
 // =======================
 // BACK TO TOP
