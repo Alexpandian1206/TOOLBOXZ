@@ -30,6 +30,7 @@ body {
   align-items: center;
   width: 220px;
   max-width: 100%;
+  margin-top: 40px; /* Add space above the search bar */
 }
 
 .search-box input {
@@ -80,6 +81,7 @@ body {
   .search-box {
     width: 100%;
     padding: 0 15px;
+    margin-top: 25px; /* smaller spacing on mobile */
   }
 
   .search-box input {
@@ -88,7 +90,6 @@ body {
     padding: 12px 42px 12px 18px;
   }
 }
-
 
 /* ======================= */
 /* BUBBLE MENU PREMIUM */
