@@ -9,19 +9,27 @@ function populateAllTools() {
   allGrid.innerHTML = '';
   const shuffled = [...toolCards].sort(() => Math.random() - 0.5);
   shuffled.forEach(card => allGrid.appendChild(card.cloneNode(true)));
-  lazyLoad();
+  lazyLoad(allGrid);
 }
 
 // Show a section (container) and highlight bubble
 function showSection(id, el) {
   document.querySelectorAll('.container').forEach(sec => sec.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  const container = document.getElementById(id);
+  container.classList.add('active');
 
   // Highlight active bubble
   document.querySelectorAll('.bubble-menu button').forEach(b => b.classList.remove('active'));
   if (el && el.tagName === 'BUTTON') el.classList.add('active');
 
-  if (id === 'all') populateAllTools();
+  // If 'all', populate shuffled
+  if (id === 'all') {
+    populateAllTools();
+  } else {
+    // Animate tools in this section
+    lazyLoad(container);
+  }
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -64,7 +72,7 @@ function populateSearchResults(query) {
     filtered.forEach(card => searchResults.appendChild(card.cloneNode(true)));
   }
 
-  lazyLoad();
+  lazyLoad(searchResults);
 }
 
 overlaySearchInput.addEventListener('input', function () {
@@ -72,11 +80,23 @@ overlaySearchInput.addEventListener('input', function () {
 });
 
 // =======================
-// TOOL CARD ANIMATION
+// TOOL CARD ANIMATION (LAZY LOAD)
 // =======================
-function lazyLoad() {
-  document.querySelectorAll('.tool-card').forEach((card, i) => {
-    setTimeout(() => card.classList.add('visible'), i * 100);
+function lazyLoad(container = document) {
+  const cards = container.querySelectorAll('.tool-card');
+  cards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.classList.remove('visible');
+  });
+
+  cards.forEach((card, i) => {
+    setTimeout(() => {
+      card.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+      card.classList.add('visible');
+    }, i * 100); // staggered by 100ms
   });
 }
 
@@ -98,17 +118,12 @@ function scrollToTop() {
 // =======================
 // MODAL TAGS & COUNTER
 // =======================
-
-// Add tags (NEW / FREE)
 document.querySelectorAll('.tool-card').forEach((card, index) => {
   const tag = document.createElement('div');
   tag.classList.add('tool-tag');
   tag.innerText = (index % 2 === 0) ? "NEW" : "FREE";
   card.appendChild(tag);
-});
 
-// Fake view counter
-document.querySelectorAll('.tool-card').forEach(card => {
   const counter = document.createElement('div');
   const views = Math.floor(Math.random() * 50000) + 50000;
   const formattedViews = (views / 1000).toFixed(1) + 'K';
