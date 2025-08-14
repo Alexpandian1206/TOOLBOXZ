@@ -23,44 +23,48 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* SEARCH BOX - PREMIUM STYLE */
+/* PREMIUM FULL GLOW SEARCH BOX */
 .search-box {
   position: relative;
   display: flex;
   align-items: center;
-  width: 500px;
+  width: 550px;
   max-width: 100%;
-  margin-top: 20px;
 }
 
 .search-box input {
   width: 100%;
-  padding: 8px 42px 8px 18px; /* adjust for height */
-  font-size: 15px;
+  padding: 10px 45px 10px 18px; /* top/right/bottom/left */
+  font-size: 16px;
   font-weight: 500;
   border-radius: 30px;
-  border: 1px solid #ddd;
+  border: 1px solid #ff4d6d;
   background: linear-gradient(145deg, #ffffff, #f5f7fa);
+  
+  /* Full pink glow on all sides */
   box-shadow: 
-    0 4px 12px rgba(255,77,109,0.3),  /* pink glow */
-    0 6px 20px rgba(255,77,109,0.15); /* soft shadow */
-
+    0 0 10px rgba(255,77,109,0.5),   /* inner glow */
+    0 0 20px rgba(255,77,109,0.3),   /* outer glow */
+    0 4px 15px rgba(255,77,109,0.2), /* downward shadow/glow */
+    0 8px 30px rgba(255,77,109,0.15); /* bigger soft shadow */
+  
   transition: all 0.3s ease;
 }
 
 .search-box input:focus {
   outline: none;
-  border-color: #ff4d6d;
-  background: #fff;
+  
+  /* Intensify glow on focus */
   box-shadow: 
-    0 6px 20px rgba(255,77,109,0.4),
-    0 8px 25px rgba(255,77,109,0.2);
+    0 0 15px rgba(255,77,109,0.7),
+    0 0 25px rgba(255,77,109,0.5),
+    0 6px 20px rgba(255,77,109,0.25),
+    0 10px 35px rgba(255,77,109,0.2);
 }
-
 
 .search-icon {
   position: absolute;
-  right: 12px; /* inside input */
+  right: 15px;
   top: 50%;
   transform: translateY(-50%);
   width: 20px;
@@ -79,26 +83,28 @@ body {
 
 .search-icon:hover {
   transform: translateY(-50%) scale(1.2);
-  stroke: #ff9900;
+  stroke: #ff99aa;
 }
 
-/* Mobile full-width search */
+/* MOBILE FULL WIDTH */
 @media(max-width:768px){
   .search-box {
     width: 100%;
     padding: 0 15px;
+    margin: 20px auto;
   }
 
   .search-box input {
     width: 100% !important;
+    padding: 8px 50px 8px 18px;
     font-size: 16px;
-    padding: 6px 50px 6px 18px; /* Increase right padding to fit icon */
   }
 
   .search-icon {
-    right: 25px; /* match input padding-right */
+    right: 25px;
   }
 }
+
 
 /* ======================= */
 /* BUBBLE MENU PREMIUM */
