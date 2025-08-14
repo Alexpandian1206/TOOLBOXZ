@@ -30,11 +30,12 @@ body {
   align-items: center;
   width: 550px;
   max-width: 100%;
+  margin: 30px auto;
 }
 
 .search-box input {
   width: 100%;
-  padding: 15px 45px 10px 18px; /* top/right/bottom/left */
+  padding: 10px 45px 10px 18px; /* top/right/bottom/left */
   font-size: 16px;
   font-weight: 500;
   border-radius: 30px;
