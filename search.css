@@ -30,7 +30,7 @@ body {
   align-items: center;
   width: 500px;
   max-width: 100%;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .search-box input {
@@ -81,7 +81,6 @@ body {
   .search-box {
     width: 100%;
     padding: 0 15px;
-    margin-top: 25px;
   }
 
   .search-box input {
@@ -103,7 +102,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 14px; /* spacing between bubbles */
-  padding: 25px 15px; /* top-bottom, left-right */
+  padding: 20px 15px; /* top-bottom, left-right */
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(8px);
   border-radius: 30px;
