@@ -90,43 +90,78 @@ body {
 }
 
 
-/* BUBBLE MENU */
+/* ======================= */
+/* BUBBLE MENU PREMIUM */
+/* ======================= */
 .bubble-menu {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
-  padding: 20px 10px;
-  background: rgba(255,255,255,0.8);
-  backdrop-filter: blur(6px);
+  gap: 14px; /* spacing between bubbles */
+  padding: 25px 15px; /* top-bottom, left-right */
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  border-radius: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  margin: 20px auto;
+  max-width: 1100px;
+  transition: all 0.4s ease;
 }
 
 .bubble-menu button {
   border: none;
   background: #f4f7fc;
   color: #333;
-  padding: 10px 18px;
+  padding: 14px 24px; /* larger padding for premium feel */
   border-radius: 30px;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  transition: 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
 .bubble-menu button:hover {
-  background: #ff4d6d;
+  background: linear-gradient(135deg, #ff4d6d, #ff9900);
   color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255,77,109,0.4);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 77, 109, 0.3);
 }
 
 .bubble-menu button.active {
-  background: linear-gradient(45deg,#ff4d6d,#ff9900);
+  background: linear-gradient(45deg, #ff4d6d, #ff9900);
   color: #fff;
-  box-shadow: 0 4px 14px rgba(255,77,109,0.5);
+  box-shadow: 0 8px 24px rgba(255, 77, 109, 0.4);
+}
+
+.bubble-menu button::before {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 77, 109, 0.2) 0%, transparent 70%);
+  top: -50%;
+  left: -10%;
+  transform: rotate(25deg);
+  transition: all 0.5s ease;
+}
+
+.bubble-menu button:hover::before {
+  top: 100%;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .bubble-menu {
+    gap: 10px;
+    padding: 20px 10px;
+  }
+  .bubble-menu button {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
 }
 
 /* CONTAINER & TOOL CARD */
