@@ -28,7 +28,7 @@ body {
   position: relative;
   display: flex;
   align-items: center;
-  width: 220px;
+  width: 500px;
   max-width: 100%;
   margin-top: 40px;
 }
@@ -87,7 +87,7 @@ body {
   .search-box input {
     width: 100% !important;
     font-size: 16px;
-    padding: 12px 50px 12px 18px; /* Increase right padding to fit icon */
+    padding: 6px 50px 6px 18px; /* Increase right padding to fit icon */
   }
 
   .search-icon {
