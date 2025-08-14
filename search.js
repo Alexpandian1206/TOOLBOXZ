@@ -1,5 +1,5 @@
 // =======================
-// TOOL CARDS
+// TOOL CARDS & BUBBLE MENU
 // =======================
 const toolCards = [...document.querySelectorAll('.tool-card')];
 const allGrid = document.getElementById('allToolsGrid');
@@ -8,23 +8,28 @@ const allGrid = document.getElementById('allToolsGrid');
 function populateAllTools() {
   allGrid.innerHTML = '';
   const shuffled = [...toolCards].sort(() => Math.random() - 0.5);
-  shuffled.forEach(card => {
-    const clone = card.cloneNode(true);
-    allGrid.appendChild(clone);
-  });
+  shuffled.forEach(card => allGrid.appendChild(card.cloneNode(true)));
   lazyLoad(allGrid);
 }
 
-// Show section
+// Show a section (container) and highlight bubble
 function showSection(id, el) {
   document.querySelectorAll('.container').forEach(sec => sec.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  const container = document.getElementById(id);
+  container.classList.add('active');
 
   // Highlight active bubble
   document.querySelectorAll('.bubble-menu button').forEach(b => b.classList.remove('active'));
   if (el && el.tagName === 'BUTTON') el.classList.add('active');
 
-  if (id === 'all') populateAllTools();
+  // If 'all', populate shuffled
+  if (id === 'all') {
+    populateAllTools();
+  } else {
+    // Animate tools in this section
+    lazyLoad(container);
+  }
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -39,6 +44,8 @@ function openSearch() {
 
 function closeSearch() {
   document.getElementById('searchOverlay').classList.remove('active');
+  document.getElementById('overlaySearchInput').value = '';
+  document.getElementById('searchResults').innerHTML = '';
 }
 
 function outsideClick(e) {
@@ -55,12 +62,16 @@ const searchResults = document.getElementById('searchResults');
 function populateSearchResults(query) {
   searchResults.innerHTML = '';
   const filter = query.toLowerCase();
-  const filtered = toolCards.filter(card => card.innerText.toLowerCase().includes(filter));
+  const filtered = toolCards.filter(card =>
+    card.querySelector('.tool-name').innerText.toLowerCase().includes(filter)
+  );
+
   if (filtered.length === 0) {
     searchResults.innerHTML = '<p style="grid-column:1/-1;color:#666;">No tools found...</p>';
   } else {
     filtered.forEach(card => searchResults.appendChild(card.cloneNode(true)));
   }
+
   lazyLoad(searchResults);
 }
 
@@ -69,7 +80,7 @@ overlaySearchInput.addEventListener('input', function () {
 });
 
 // =======================
-// LAZY LOAD ANIMATION
+// TOOL CARD ANIMATION (LAZY LOAD) - PREMIUM VERSION
 // =======================
 function lazyLoad(container = document) {
   const cards = container.querySelectorAll('.tool-card');
@@ -85,66 +96,27 @@ function lazyLoad(container = document) {
       card.style.opacity = '1';
       card.style.transform = 'translateY(0)';
       card.classList.add('visible');
-    }, i * 100);
+    }, i * 100); // staggered by 100ms
   });
 }
 
 // =======================
-// BUBBLE MENU RANDOMIZER
-// =======================
-const bubbleMenu = document.querySelector('.bubble-menu');
-const bubbles = [...bubbleMenu.querySelectorAll('button')];
-
-const allToolsButton = bubbles.find(b => b.dataset.id === 'all');
-const otherBubbles = bubbles.filter(b => b !== allToolsButton);
-
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
-
-function renderBubbleMenu() {
-  bubbleMenu.innerHTML = '';
-  bubbleMenu.appendChild(allToolsButton); // always first
-  const shuffled = shuffleArray(otherBubbles);
-  shuffled.forEach(b => bubbleMenu.appendChild(b));
-  animateBubbles();
-}
-
-function animateBubbles() {
-  const currentBubbles = bubbleMenu.querySelectorAll('button');
-  currentBubbles.forEach((b, i) => {
-    b.style.opacity = '0';
-    b.style.transform = 'translateY(20px)';
-    setTimeout(() => {
-      b.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
-      b.style.opacity = '1';
-      b.style.transform = 'translateY(0)';
-    }, i * 100);
-  });
-}
-
-// =======================
-// BACK TO TOP
+// BACK TO TOP BUTTON
 // =======================
 const backToTop = document.getElementById("backToTop");
-window.onscroll = () => {
-  if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 100) {
     backToTop.style.display = "block";
   } else {
     backToTop.style.display = "none";
   }
-};
-
+});
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // =======================
-// TOOL TAGS & VIEW COUNTER
+// MODAL TAGS & COUNTER
 // =======================
 document.querySelectorAll('.tool-card').forEach((card, index) => {
   const tag = document.createElement('div');
@@ -164,4 +136,3 @@ document.querySelectorAll('.tool-card').forEach((card, index) => {
 // INITIAL LOAD
 // =======================
 showSection('all', document.querySelector('.bubble-menu button'));
-renderBubbleMenu();
