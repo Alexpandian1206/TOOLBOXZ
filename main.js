@@ -62,9 +62,16 @@ const searchResults = document.getElementById('searchResults');
 function populateSearchResults(query) {
   searchResults.innerHTML = '';
   const filter = query.toLowerCase();
-  const filtered = toolCards.filter(card =>
-    card.querySelector('.tool-name').innerText.toLowerCase().includes(filter)
-  );
+  let filtered;
+
+  if (filter === '') {
+    // Show ALL tools in random order
+    filtered = [...toolCards].sort(() => Math.random() - 0.5);
+  } else {
+    filtered = toolCards.filter(card =>
+      card.querySelector('.tool-name').innerText.toLowerCase().includes(filter)
+    );
+  }
 
   if (filtered.length === 0) {
     searchResults.innerHTML = '<p style="grid-column:1/-1;color:#666;">No tools found...</p>';
