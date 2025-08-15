@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&family=Roboto:wght@400;500;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap');
 
 /* RESET & BASE */
 * {
@@ -214,6 +214,33 @@ body {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+
+.title-section h2 {
+      font-size: 28px;
+      font-weight: bold;
+      margin: 0;
+      font-family: 'Merienda', cursive;
+      background: linear-gradient(to right, #ff0000, #000);
+      background-size: 150% auto;
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      animation: flicker 1.5s infinite linear;
+    }
+
+    @keyframes flicker {
+      0% {
+        background-position: 0% center;
+      }
+      100% {
+        background-position: 100% center;
+      }
+    }
+
+    .title-section p {
+      font-size: 16px;
+      margin-top: 5px;
+    }
 
 .content {
   padding: 30px 20px;
