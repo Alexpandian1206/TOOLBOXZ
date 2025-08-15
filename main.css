@@ -220,17 +220,33 @@ body {
   font-weight: bold;
   margin: 0;
   font-family: 'Merienda', cursive;
-  background: linear-gradient(to right, #ff0000, #000);
+  background: linear-gradient(to right, #ff0000, #ff9900);
   background-size: 150% auto;
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
-  animation: flicker 1.5s infinite linear;
+  text-shadow: 0 0 5px rgba(255, 77, 77, 0.6), 
+               0 0 10px rgba(255, 77, 77, 0.6), 
+               0 0 20px rgba(255, 153, 0, 0.6);
+  animation: glowPulse 2s ease-in-out infinite;
 }
 
-@keyframes flicker {
-  0% { background-position: 0% center; }
-  100% { background-position: 100% center; }
+@keyframes glowPulse {
+  0% {
+    text-shadow: 0 0 5px rgba(255, 77, 77, 0.6), 
+                 0 0 10px rgba(255, 77, 77, 0.6), 
+                 0 0 20px rgba(255, 153, 0, 0.6);
+  }
+  50% {
+    text-shadow: 0 0 10px rgba(255, 77, 77, 0.8), 
+                 0 0 20px rgba(255, 77, 77, 0.8), 
+                 0 0 40px rgba(255, 153, 0, 0.8);
+  }
+  100% {
+    text-shadow: 0 0 5px rgba(255, 77, 77, 0.6), 
+                 0 0 10px rgba(255, 77, 77, 0.6), 
+                 0 0 20px rgba(255, 153, 0, 0.6);
+  }
 }
 
 .title-section p {
