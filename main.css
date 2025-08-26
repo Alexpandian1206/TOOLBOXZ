@@ -172,12 +172,12 @@ body {
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
   .bubble-menu {
-    gap: 10px;
+    gap: 8px;
     padding: 20px 10px;
   }
   .bubble-menu button {
     padding: 12px 20px;
-    font-size: 14px;
+    font-size: 12px;
   }
 }
 
