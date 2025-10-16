@@ -149,7 +149,7 @@ body {
 
 .bubble-menu button.active {
   background: radial-gradient(circle, rgba(210, 4, 45, 0.6) 0%, rgba(70, 252, 225, 0.4) 100%);
-  color: #fff;
+  color: black;
   box-shadow: 0 8px 24px rgba(255, 77, 109, 0.4);
 }
 
@@ -297,7 +297,7 @@ body {
   top: 8px;
   right: 8px;
   background: radial-gradient(circle, rgba(210, 4, 45, 0.6) 0%, rgba(70, 252, 225, 0.4) 100%);
-  color: white;
+  color: black;
   font-size: 12px;
   padding: 3px 8px;
   border-radius: 20px;
