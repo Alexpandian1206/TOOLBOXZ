@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&family=Roboto:wght@400;500;700&display=swap');
 
-
 /* RESET & BASE */
 * {
   margin: 0;
@@ -12,18 +11,20 @@ body {
   font-family: 'Roboto', sans-serif;
   background: linear-gradient(135deg, #f4f7fc, #dde6ff, #fff0f0);
   background-size: 300% 300%;
-  animation: gradientBG 12s ease infinite;
+  animation: gradientBG 15s ease infinite;
   overflow-x: hidden;
   transition: background 0.4s ease, color 0.4s ease;
+  color: #333;
 }
 
+/* GRADIENT ANIMATION */
 @keyframes gradientBG {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* PREMIUM FULL GLOW SEARCH BOX */
+/* PREMIUM GLOW SEARCH BOX */
 .search-box {
   position: relative;
   display: flex;
@@ -35,55 +36,50 @@ body {
 
 .search-box input {
   width: 100%;
-  padding: 10px 45px 10px 18px; /* top/right/bottom/left */
+  padding: 12px 50px 12px 20px;
   font-size: 16px;
   font-weight: 500;
-  border-radius: 30px;
+  border-radius: 35px;
   border: 1px solid #ff4d6d;
   background: linear-gradient(145deg, #ffffff, #f5f7fa);
-  
-  /* Full pink glow on all sides */
   box-shadow: 
-    0 0 10px rgba(255,77,109,0.5),   /* inner glow */
-    0 0 20px rgba(255,77,109,0.3),   /* outer glow */
-    0 4px 15px rgba(255,77,109,0.2), /* downward shadow/glow */
-    0 8px 30px rgba(255,77,109,0.15); /* bigger soft shadow */
-  
-  transition: all 0.3s ease;
+    0 0 12px rgba(255,77,109,0.5),
+    0 0 25px rgba(255,77,109,0.3),
+    0 6px 18px rgba(255,77,109,0.2),
+    0 10px 30px rgba(255,77,109,0.15);
+  transition: all 0.4s ease;
 }
 
 .search-box input:focus {
   outline: none;
-  
-  /* Intensify glow on focus */
   box-shadow: 
-    0 0 15px rgba(255,77,109,0.7),
-    0 0 25px rgba(255,77,109,0.5),
-    0 6px 20px rgba(255,77,109,0.25),
-    0 10px 35px rgba(255,77,109,0.2);
+    0 0 20px rgba(255,77,109,0.7),
+    0 0 35px rgba(255,77,109,0.5),
+    0 8px 25px rgba(255,77,109,0.25),
+    0 12px 40px rgba(255,77,109,0.2);
 }
 
 .search-icon {
   position: absolute;
-  right: 15px;
+  right: 18px;
   top: 50%;
   transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   cursor: pointer;
   transition: transform 0.3s ease, stroke 0.3s ease;
 }
 
 .search-icon svg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   stroke: #ff4d6d;
-  stroke-width: 2;
+  stroke-width: 2.2;
   fill: none;
 }
 
 .search-icon:hover {
-  transform: translateY(-50%) scale(1.2);
+  transform: translateY(-50%) scale(1.3);
   stroke: #ff99aa;
 }
 
@@ -96,31 +92,29 @@ body {
   }
 
   .search-box input {
-    width: 100% !important;
-    padding: 8px 50px 8px 18px;
-    font-size: 16px;
+    padding: 10px 50px 10px 16px;
+    font-size: 15px;
   }
 
   .search-icon {
-    right: 25px;
+    right: 20px;
   }
 }
 
-
 /* ======================= */
-/* BUBBLE MENU PREMIUM */
+/* PREMIUM BUBBLE MENU */
 /* ======================= */
 .bubble-menu {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 12px; /* spacing between bubbles */
-  padding: 20px 15px; /* top-bottom, left-right */
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(8px);
-  border-radius: 30px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  margin: 20px auto;
+  gap: 14px;
+  padding: 22px 15px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  border-radius: 35px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+  margin: 25px auto;
   max-width: 1100px;
   transition: all 0.4s ease;
 }
@@ -129,13 +123,13 @@ body {
   border: none;
   background: #f4f7fc;
   color: #333;
-  padding: 14px 24px; /* larger padding for premium feel */
-  border-radius: 30px;
+  padding: 16px 28px;
+  border-radius: 35px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  transition: all 0.35s ease;
   position: relative;
   overflow: hidden;
 }
@@ -143,24 +137,24 @@ body {
 .bubble-menu button:hover {
   background: linear-gradient(135deg, #ff4d6d, #ff9900);
   color: #fff;
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 8px 20px rgba(255, 77, 109, 0.3);
+  transform: translateY(-2px) scale(1.07);
+  box-shadow: 0 10px 28px rgba(255, 77, 109, 0.35);
 }
 
 .bubble-menu button.active {
   background: linear-gradient(45deg, #ff4d6d, #ff9900);
   color: #fff;
-  box-shadow: 0 8px 24px rgba(255, 77, 109, 0.4);
+  box-shadow: 0 10px 30px rgba(255, 77, 109, 0.4);
 }
 
 .bubble-menu button::before {
   content: "";
   position: absolute;
-  width: 120%;
-  height: 200%;
+  width: 130%;
+  height: 220%;
   background: radial-gradient(circle, rgba(255, 77, 109, 0.2) 0%, transparent 70%);
-  top: -50%;
-  left: -10%;
+  top: -60%;
+  left: -15%;
   transform: rotate(25deg);
   transition: all 0.5s ease;
 }
@@ -169,27 +163,29 @@ body {
   top: 100%;
 }
 
-/* Responsive adjustments */
+/* Responsive */
 @media screen and (max-width: 768px) {
   .bubble-menu {
-    gap: 9px;
-    padding: 20px 10px;
+    gap: 10px;
+    padding: 18px 10px;
   }
   .bubble-menu button {
-    padding: 12px 20px;
-    font-size: 14px;
+    padding: 12px 22px;
+    font-size: 15px;
   }
 }
 
-/* CONTAINER */
+/* ======================= */
+/* CONTAINER & CARDS */
+/* ======================= */
 .container {
   width: 100%;
   max-width: 1100px;
-  background: rgba(255,255,255,0.9);
-  border-radius: 20px;
-  box-shadow: 0 15px 50px rgba(0,0,0,0.12);
+  background: rgba(255,255,255,0.92);
+  border-radius: 25px;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.12);
   backdrop-filter: blur(16px);
-  margin: 20px auto;
+  margin: 25px auto;
   display: none;
   opacity: 0;
   transition: opacity 0.6s ease;
@@ -206,7 +202,7 @@ body {
   background-size: 200% 200%;
   animation: gradientMove 5s ease infinite;
   color: white;
-  padding: clamp(15px, 3vw, 25px) 20px;
+  padding: clamp(18px, 3vw, 28px) 20px;
   text-align: center;
 }
 
@@ -217,8 +213,8 @@ body {
 }
 
 .title-section h2 {
-  font-size: clamp(20px, 4vw, 28px);
-  font-weight: bold;
+  font-size: clamp(22px, 4vw, 30px);
+  font-weight: 700;
   margin: 0;
   font-family: 'Merienda', cursive;
   background: linear-gradient(to right, #ff0000, #000);
@@ -230,32 +226,28 @@ body {
 }
 
 .title-section p {
-  font-size: clamp(14px, 2vw, 16px);
-  margin-top: 5px;
-}
-
-/* CONTENT */
-.content {
-  padding: clamp(20px, 4vw, 30px) 15px;
+  font-size: clamp(15px, 2vw, 17px);
+  margin-top: 6px;
 }
 
 /* GRID */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: clamp(15px, 3vw, 22px);
+  gap: clamp(16px, 3vw, 24px);
+  padding: 15px;
 }
 
-/* TOOL CARD – Premium Edition */
+/* TOOL CARD */
 .tool-card {
   display: flex;
   align-items: center;
   background: linear-gradient(145deg, #ffffff 0%, #f9f9f9 100%);
-  padding: 20px 24px;
-  border-radius: 20px;
+  padding: 22px 26px;
+  border-radius: 25px;
   border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  transition: all 0.4s ease;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+  transition: all 0.45s ease;
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -266,21 +258,18 @@ body {
   opacity: 0;
 }
 
-/* Smooth fade + lift animation */
 .tool-card.visible {
   opacity: 1;
   transform: translateY(0);
   transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease;
 }
 
-/* Hover glow and lift */
 .tool-card:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 18px 40px rgba(255, 87, 115, 0.35);
+  transform: translateY(-12px) scale(1.06);
+  box-shadow: 0 20px 45px rgba(255, 87, 115, 0.35);
   background: linear-gradient(145deg, #fff0f5 0%, #ffffff 100%);
 }
 
-/* Subtle inner light effect */
 .tool-card::before {
   content: "";
   position: absolute;
@@ -299,51 +288,47 @@ body {
   opacity: 1;
 }
 
-/* TOOL IMAGE */
 .tool-card img {
-  width: clamp(50px, 12vw, 65px);
-  height: clamp(50px, 12vw, 65px);
-  margin-right: 18px;
-  border-radius: 12px;
-  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.15));
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  width: clamp(55px, 12vw, 70px);
+  height: clamp(55px, 12vw, 70px);
+  margin-right: 20px;
+  border-radius: 14px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .tool-card:hover img {
-  transform: rotate(-5deg) scale(1.1);
+  transform: rotate(-5deg) scale(1.12);
 }
 
-/* Optional Title inside Tool Card */
 .tool-card h3 {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: #333;
   letter-spacing: 0.3px;
-  transition: color 0.3s ease;
+  transition: color 0.35s ease;
 }
 
 .tool-card:hover h3 {
   color: #ff4d6d;
 }
 
-/* TOOL NAME */
 .tool-name {
-  font-size: clamp(16px, 3vw, 18px);
+  font-size: clamp(16px, 3vw, 19px);
   font-weight: 600;
 }
 
-/* TAG */
 .tool-tag {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 10px;
+  right: 10px;
   background: linear-gradient(135deg, #ff4d6d, #ff9900);
   color: white;
   font-size: 12px;
-  padding: 3px 8px;
-  border-radius: 20px;
+  padding: 4px 9px;
+  border-radius: 22px;
   font-weight: bold;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 7px rgba(0,0,0,0.15);
 }
 
 /* SEARCH OVERLAY */
@@ -353,8 +338,8 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.4);
-  backdrop-filter: blur(8px);
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(10px);
   display: none;
   align-items: flex-start;
   justify-content: center;
@@ -369,56 +354,57 @@ body {
 
 .search-overlay-content {
   width: 90%;
-  max-width: 800px;
-  background: rgba(255,255,255,0.95);
-  padding: 30px;
-  border-radius: 20px;
-  animation: slideDown 0.4s ease forwards;
+  max-width: 820px;
+  background: rgba(255,255,255,0.96);
+  padding: 32px;
+  border-radius: 25px;
+  animation: slideDown 0.45s ease forwards;
   text-align: center;
 }
 
 .close-search {
   position: absolute;
-  top: -30px;
-  right: -30px;
-  font-size: 30px;
+  top: -32px;
+  right: -32px;
+  font-size: 32px;
   cursor: pointer;
   color: #ff4d6d;
-  transition: 0.3s;
+  transition: 0.35s;
 }
 
 .close-search:hover {
-  transform: scale(1.2);
+  transform: scale(1.25);
 }
 
 #overlaySearchInput {
   width: 100%;
-  padding: 14px 18px;
+  padding: 16px 20px;
   font-size: 18px;
   border: 2px solid #ff4d6d;
-  border-radius: 30px;
-  margin-bottom: 30px;
+  border-radius: 35px;
+  margin-bottom: 32px;
   outline: none;
-  box-shadow: 0 0 20px rgba(255,77,109,0.2);
-  transition: 0.3s;
+  box-shadow: 0 0 25px rgba(255,77,109,0.2);
+  transition: 0.35s;
 }
 
 #overlaySearchInput:focus {
-  box-shadow: 0 0 30px rgba(255,77,109,0.4);
+  box-shadow: 0 0 40px rgba(255,77,109,0.45);
 }
 
 .search-results {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  gap: 22px;
 }
 
+/* ANIMATIONS */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
 @keyframes slideDown {
-  from { transform: translateY(-30px); opacity: 0; }
+  from { transform: translateY(-35px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
