@@ -202,7 +202,7 @@ body {
 
 /* TITLE SECTION */
 .title-section {
-  background: linear-gradient(145deg, #ffc1e3, #ff8ed6, #ff5ebc);
+  background: linear-gradient(135deg, #D2042D, #B00227, #FF3A55);
   background-size: 200% 200%;
   animation: gradientMove 5s ease infinite;
   color: white;
