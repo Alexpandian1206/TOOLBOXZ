@@ -1,10 +1,18 @@
-// =======================
-// TOOL CARDS & BUBBLE MENU
-// =======================
+/* ============================================================
+   PREMIUM TOOL PAGE SCRIPT ✨
+   Optimized for smooth animations, clean logic, and better UX
+============================================================ */
+
+// ========== GLOBAL SELECTORS ==========
 const toolCards = [...document.querySelectorAll('.tool-card')];
 const allGrid = document.getElementById('allToolsGrid');
+const overlaySearchInput = document.getElementById('overlaySearchInput');
+const searchResults = document.getElementById('searchResults');
+const backToTop = document.getElementById('backToTop');
 
-// Populate all tools (shuffled)
+/* ============================================================
+   SECTION SWITCHING & MENU LOGIC
+============================================================ */
 function populateAllTools() {
   allGrid.innerHTML = '';
   const shuffled = [...toolCards].sort(() => Math.random() - 0.5);
@@ -12,40 +20,40 @@ function populateAllTools() {
   lazyLoad(allGrid);
 }
 
-// Show a section (container) and highlight bubble
 function showSection(id, el) {
+  // Hide all containers
   document.querySelectorAll('.container').forEach(sec => sec.classList.remove('active'));
+
+  // Activate selected container
   const container = document.getElementById(id);
   container.classList.add('active');
 
-  // Highlight active bubble
-  document.querySelectorAll('.bubble-menu button').forEach(b => b.classList.remove('active'));
-  if (el && el.tagName === 'BUTTON') el.classList.add('active');
+  // Highlight active menu bubble
+  document.querySelectorAll('.bubble-menu button').forEach(btn => btn.classList.remove('active'));
+  if (el?.tagName === 'BUTTON') el.classList.add('active');
 
-  // If 'all', populate shuffled
-  if (id === 'all') {
-    populateAllTools();
-  } else {
-    // Animate tools in this section
-    lazyLoad(container);
-  }
+  // Populate accordingly
+  id === 'all' ? populateAllTools() : lazyLoad(container);
 
+  // Smooth scroll to top
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// =======================
-// SEARCH OVERLAY
-// =======================
+/* ============================================================
+   SEARCH OVERLAY HANDLER
+============================================================ */
 function openSearch() {
-  document.getElementById('searchOverlay').classList.add('active');
-  document.getElementById('overlaySearchInput').focus();
+  const overlay = document.getElementById('searchOverlay');
+  overlay.classList.add('active');
+  overlaySearchInput.focus();
   populateSearchResults('');
 }
 
 function closeSearch() {
-  document.getElementById('searchOverlay').classList.remove('active');
-  document.getElementById('overlaySearchInput').value = '';
-  document.getElementById('searchResults').innerHTML = '';
+  const overlay = document.getElementById('searchOverlay');
+  overlay.classList.remove('active');
+  overlaySearchInput.value = '';
+  searchResults.innerHTML = '';
 }
 
 function outsideClick(e) {
@@ -56,25 +64,18 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeSearch();
 });
 
-const overlaySearchInput = document.getElementById('overlaySearchInput');
-const searchResults = document.getElementById('searchResults');
-
-function populateSearchResults(query) {
+function populateSearchResults(query = '') {
+  const filter = query.toLowerCase().trim();
   searchResults.innerHTML = '';
-  const filter = query.toLowerCase();
-  let filtered;
 
-  if (filter === '') {
-    // Show ALL tools in random order
-    filtered = [...toolCards].sort(() => Math.random() - 0.5);
-  } else {
-    filtered = toolCards.filter(card =>
-      card.querySelector('.tool-name').innerText.toLowerCase().includes(filter)
-    );
-  }
+  let filtered = filter
+    ? toolCards.filter(card =>
+        card.querySelector('.tool-name').innerText.toLowerCase().includes(filter)
+      )
+    : [...toolCards].sort(() => Math.random() - 0.5);
 
-  if (filtered.length === 0) {
-    searchResults.innerHTML = '<p style="grid-column:1/-1;color:#666;">No tools found...</p>';
+  if (!filtered.length) {
+    searchResults.innerHTML = `<p style="grid-column:1/-1;color:#666;">No tools found...</p>`;
   } else {
     filtered.forEach(card => searchResults.appendChild(card.cloneNode(true)));
   }
@@ -82,68 +83,66 @@ function populateSearchResults(query) {
   lazyLoad(searchResults);
 }
 
-overlaySearchInput.addEventListener('input', function () {
-  populateSearchResults(this.value);
-});
+overlaySearchInput.addEventListener('input', e => populateSearchResults(e.target.value));
 
-// =======================
-// TOOL CARD ANIMATION 
-// =======================
+/* ============================================================
+   TOOL CARD ENTRY ANIMATIONS
+============================================================ */
 function lazyLoad(container = document) {
   const cards = container.querySelectorAll('.tool-card');
-  
-  // Reset each card
+  const baseDelay = 100;
+
   cards.forEach(card => {
     card.style.opacity = '0';
     card.style.transform = 'translateY(25px)';
-    card.style.transition = 'none';
     card.classList.remove('visible');
   });
 
-  // Animate with stagger
   cards.forEach((card, i) => {
     setTimeout(() => {
-      card.style.transition = 'opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+      card.classList.add('visible');
+      card.style.transition = 'opacity 0.6s cubic-bezier(0.25,1,0.5,1), transform 0.6s cubic-bezier(0.25,1,0.5,1)';
       card.style.opacity = '1';
       card.style.transform = 'translateY(0)';
-      card.classList.add('visible');
-    }, i * 120); // stagger 120ms for smoother sequence
+    }, i * baseDelay);
   });
 }
 
-// =======================
-// BACK TO TOP BUTTON
-// =======================
-const backToTop = document.getElementById("backToTop");
+/* ============================================================
+   BACK TO TOP BUTTON
+============================================================ */
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 100) {
-    backToTop.style.display = "block";
-  } else {
-    backToTop.style.display = "none";
-  }
+  backToTop.style.opacity = window.scrollY > 120 ? '1' : '0';
+  backToTop.style.pointerEvents = window.scrollY > 120 ? 'auto' : 'none';
 });
+
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// =======================
-// MODAL TAGS & COUNTER
-// =======================
+/* ============================================================
+   AUTO TAGGING & VIEW COUNTER (Dynamic Badges)
+============================================================ */
 document.querySelectorAll('.tool-card').forEach((card, index) => {
+  // Add tag (alternate NEW / FREE)
   const tag = document.createElement('div');
-  tag.classList.add('tool-tag');
-  tag.innerText = (index % 2 === 0) ? "NEW" : "FREE";
+  tag.className = 'tool-tag';
+  tag.textContent = index % 2 === 0 ? 'NEW' : 'FREE';
   card.appendChild(tag);
 
+  // Add random views
+  const views = Math.floor(Math.random() * 40000) + 60000;
+  const formattedViews = `${(views / 1000).toFixed(1)}K`;
+
   const counter = document.createElement('div');
-  const views = Math.floor(Math.random() * 50000) + 50000;
-  const formattedViews = (views / 1000).toFixed(1) + 'K';
-  counter.style.cssText = "position:absolute;bottom:8px;right:12px;font-size:12px;color:#999;";
+  counter.className = 'tool-views';
   counter.innerHTML = `👁️ ${formattedViews}`;
   card.appendChild(counter);
 });
 
-// =======================
-// INITIAL LOAD
-// =======================
-showSection('all', document.querySelector('.bubble-menu button'));
+/* ============================================================
+   INITIAL LOAD
+============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  showSection('all', document.querySelector('.bubble-menu button'));
+});
