@@ -141,15 +141,15 @@ body {
 }
 
 .bubble-menu button:hover {
-  background: radial-gradient(circle, rgba(210, 4, 45, 0.6) 0%, rgba(70, 252, 225, 0.4) 100%);
+  background: linear-gradient(135deg, #ff4d6d, #ff9900);
   color: #fff;
   transform: translateY(-2px) scale(1.05);
   box-shadow: 0 8px 20px rgba(255, 77, 109, 0.3);
 }
 
 .bubble-menu button.active {
-  background: radial-gradient(circle, rgba(210, 4, 45, 0.6) 0%, rgba(70, 252, 225, 0.4) 100%);
-  color: black;
+  background: linear-gradient(45deg, #ff4d6d, #ff9900);
+  color: #fff;
   box-shadow: 0 8px 24px rgba(255, 77, 109, 0.4);
 }
 
@@ -202,31 +202,36 @@ body {
 
 /* TITLE SECTION */
 .title-section {
-  /* Glassy background */
-  background: radial-gradient(circle, rgba(210, 4, 45, 0.6) 0%, rgba(70, 252, 225, 0.4) 100%);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg,#ff4d4d,#ff9900,#000);
+  background-size: 200% 200%;
+  animation: gradientMove 5s ease infinite;
   color: white;
   padding: clamp(15px, 3vw, 25px) 20px;
   text-align: center;
 }
 
-/* H2 Title */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 .title-section h2 {
   font-size: clamp(20px, 4vw, 28px);
   font-weight: bold;
   margin: 0;
   font-family: 'Merienda', cursive;
-  color: black; /* solid black text */
+  background: linear-gradient(to right, #ff0000, #000);
+  background-size: 150% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: flicker 1.5s infinite linear;
 }
 
-/* Paragraph */
 .title-section p {
   font-size: clamp(14px, 2vw, 16px);
   margin-top: 5px;
-  color: white; /* solid white text */
 }
 
 /* CONTENT */
@@ -269,7 +274,6 @@ body {
 .tool-card:hover {
   transform: translateY(-8px) scale(1.04);
   box-shadow: 0 15px 35px rgba(255,77,109,0.3);
-  color: #D2042D;
 }
 
 /* TOOL IMAGE */
@@ -296,8 +300,8 @@ body {
   position: absolute;
   top: 8px;
   right: 8px;
-  background: radial-gradient(circle, rgba(210, 4, 45, 0.6) 0%, rgba(70, 252, 225, 0.4) 100%);
-  color: black;
+  background: linear-gradient(135deg, #ff4d6d, #ff9900);
+  color: white;
   font-size: 12px;
   padding: 3px 8px;
   border-radius: 20px;
