@@ -202,31 +202,31 @@ body {
 
 /* TITLE SECTION */
 .title-section {
-  /* fallback solid color */
-  background: #D2042D; 
-  /* radial gradient */
-  background: radial-gradient(circle, rgba(210, 4, 45, 1) 0%, rgba(70, 252, 225, 1) 100%);
+  /* Glassy background */
+  background: radial-gradient(circle, rgba(210, 4, 45, 0.6) 0%, rgba(70, 252, 225, 0.4) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
   padding: clamp(15px, 3vw, 25px) 20px;
   text-align: center;
 }
 
+/* H2 Title */
 .title-section h2 {
   font-size: clamp(20px, 4vw, 28px);
   font-weight: bold;
   margin: 0;
   font-family: 'Merienda', cursive;
-  background: radial-gradient(circle, rgba(210, 4, 45, 1) 0%, rgba(70, 252, 225, 1) 100%);
-  background-size: 150% auto;
-  color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
-  animation: flicker 1.5s infinite linear;
+  color: black; /* solid black text */
 }
 
+/* Paragraph */
 .title-section p {
   font-size: clamp(14px, 2vw, 16px);
   margin-top: 5px;
+  color: white; /* solid white text */
 }
 
 /* CONTENT */
