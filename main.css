@@ -246,47 +246,84 @@ body {
   gap: clamp(15px, 3vw, 22px);
 }
 
-/* TOOL CARD */
+/* TOOL CARD – Premium Edition */
 .tool-card {
   display: flex;
   align-items: center;
-  background: linear-gradient(145deg,#ffffff,#f2f2f2);
-  padding: 18px;
-  border-radius: 16px;
-  border: 1px solid #eee;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: linear-gradient(145deg, #ffffff 0%, #f9f9f9 100%);
+  padding: 20px 24px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
   cursor: pointer;
   position: relative;
   overflow: hidden;
   text-decoration: none;
   color: inherit;
+  backdrop-filter: blur(12px);
   transform: translateY(20px);
   opacity: 0;
 }
 
+/* Smooth fade + lift animation */
 .tool-card.visible {
   opacity: 1;
   transform: translateY(0);
-  transition: transform 0.6s ease, opacity 0.6s ease;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease;
 }
 
+/* Hover glow and lift */
 .tool-card:hover {
-  transform: translateY(-8px) scale(1.04);
-  box-shadow: 0 15px 35px rgba(255,77,109,0.3);
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 18px 40px rgba(255, 87, 115, 0.35);
+  background: linear-gradient(145deg, #fff0f5 0%, #ffffff 100%);
+}
+
+/* Subtle inner light effect */
+.tool-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.15), rgba(255,255,255,0));
+  transform: skewX(-20deg);
+  transition: all 0.6s ease;
+  opacity: 0;
+}
+
+.tool-card:hover::before {
+  left: 100%;
+  opacity: 1;
 }
 
 /* TOOL IMAGE */
 .tool-card img {
-  width: clamp(45px, 12vw, 60px);
-  height: clamp(45px, 12vw, 60px);
-  margin-right: 15px;
-  filter: drop-shadow(0px 3px 6px rgba(0,0,0,0.2));
-  transition: transform 0.35s ease;
+  width: clamp(50px, 12vw, 65px);
+  height: clamp(50px, 12vw, 65px);
+  margin-right: 18px;
+  border-radius: 12px;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.15));
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .tool-card:hover img {
-  transform: rotate(-6deg) scale(1.08);
+  transform: rotate(-5deg) scale(1.1);
+}
+
+/* Optional Title inside Tool Card */
+.tool-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  letter-spacing: 0.3px;
+  transition: color 0.3s ease;
+}
+
+.tool-card:hover h3 {
+  color: #ff4d6d;
 }
 
 /* TOOL NAME */
