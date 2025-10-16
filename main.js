@@ -1,57 +1,57 @@
-/* ============================================================
-   PREMIUM TOOL PAGE SCRIPT ✨
-   Optimized for smooth animations, clean logic, and better UX
-============================================================ */
+// ========================================================
+// 🌟 PREMIUM TOOL DASHBOARD JS (No Views)
+// ========================================================
 
-// ========== GLOBAL SELECTORS ==========
+// Cached DOM references for performance
 const toolCards = [...document.querySelectorAll('.tool-card')];
 const allGrid = document.getElementById('allToolsGrid');
 const overlaySearchInput = document.getElementById('overlaySearchInput');
 const searchResults = document.getElementById('searchResults');
-const backToTop = document.getElementById('backToTop');
+const backToTop = document.getElementById("backToTop");
 
-/* ============================================================
-   SECTION SWITCHING & MENU LOGIC
-============================================================ */
+// ========================================================
+// 🧩 Populate All Tools (Shuffled)
+// ========================================================
 function populateAllTools() {
   allGrid.innerHTML = '';
   const shuffled = [...toolCards].sort(() => Math.random() - 0.5);
-  shuffled.forEach(card => allGrid.appendChild(card.cloneNode(true)));
+  const fragment = document.createDocumentFragment();
+  shuffled.forEach(card => fragment.appendChild(card.cloneNode(true)));
+  allGrid.appendChild(fragment);
   lazyLoad(allGrid);
 }
 
+// ========================================================
+// 🔘 Show Section (with smooth scroll + bubble highlight)
+// ========================================================
 function showSection(id, el) {
-  // Hide all containers
   document.querySelectorAll('.container').forEach(sec => sec.classList.remove('active'));
-
-  // Activate selected container
   const container = document.getElementById(id);
   container.classList.add('active');
 
-  // Highlight active menu bubble
+  // Highlight bubble
   document.querySelectorAll('.bubble-menu button').forEach(btn => btn.classList.remove('active'));
   if (el?.tagName === 'BUTTON') el.classList.add('active');
 
-  // Populate accordingly
+  // Populate tools
   id === 'all' ? populateAllTools() : lazyLoad(container);
 
-  // Smooth scroll to top
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-/* ============================================================
-   SEARCH OVERLAY HANDLER
-============================================================ */
+// ========================================================
+// 🔍 Search Overlay System
+// ========================================================
+const searchOverlay = document.getElementById('searchOverlay');
+
 function openSearch() {
-  const overlay = document.getElementById('searchOverlay');
-  overlay.classList.add('active');
+  searchOverlay.classList.add('active');
   overlaySearchInput.focus();
   populateSearchResults('');
 }
 
 function closeSearch() {
-  const overlay = document.getElementById('searchOverlay');
-  overlay.classList.remove('active');
+  searchOverlay.classList.remove('active');
   overlaySearchInput.value = '';
   searchResults.innerHTML = '';
 }
@@ -60,89 +60,88 @@ function outsideClick(e) {
   if (e.target.id === 'searchOverlay') closeSearch();
 }
 
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeSearch();
-});
+document.addEventListener('keydown', e => e.key === 'Escape' && closeSearch());
 
+// ========================================================
+// 🔎 Populate Search Results (with smoother animation)
+// ========================================================
 function populateSearchResults(query = '') {
-  const filter = query.toLowerCase().trim();
   searchResults.innerHTML = '';
+  const filter = query.trim().toLowerCase();
+  let results = [];
 
-  let filtered = filter
-    ? toolCards.filter(card =>
-        card.querySelector('.tool-name').innerText.toLowerCase().includes(filter)
-      )
-    : [...toolCards].sort(() => Math.random() - 0.5);
-
-  if (!filtered.length) {
-    searchResults.innerHTML = `<p style="grid-column:1/-1;color:#666;">No tools found...</p>`;
+  if (!filter) {
+    results = [...toolCards].sort(() => Math.random() - 0.5);
   } else {
-    filtered.forEach(card => searchResults.appendChild(card.cloneNode(true)));
+    results = toolCards.filter(card =>
+      card.querySelector('.tool-name')?.innerText.toLowerCase().includes(filter)
+    );
   }
 
+  if (!results.length) {
+    searchResults.innerHTML = `<p style="grid-column:1/-1;color:#666;">No tools found...</p>`;
+    return;
+  }
+
+  const fragment = document.createDocumentFragment();
+  results.forEach(card => fragment.appendChild(card.cloneNode(true)));
+  searchResults.appendChild(fragment);
   lazyLoad(searchResults);
 }
 
-overlaySearchInput.addEventListener('input', e => populateSearchResults(e.target.value));
+// Debounced search input (for smoother typing)
+let searchTimeout;
+overlaySearchInput.addEventListener('input', e => {
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(() => populateSearchResults(e.target.value), 200);
+});
 
-/* ============================================================
-   TOOL CARD ENTRY ANIMATIONS
-============================================================ */
+// ========================================================
+// 🪄 Tool Card Animation (Optimized LazyLoad)
+// ========================================================
 function lazyLoad(container = document) {
   const cards = container.querySelectorAll('.tool-card');
-  const baseDelay = 100;
-
-  cards.forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(25px)';
-    card.classList.remove('visible');
-  });
 
   cards.forEach((card, i) => {
+    card.classList.remove('visible');
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(25px) scale(0.97)';
+    card.style.transition = 'none';
+
     setTimeout(() => {
-      card.classList.add('visible');
-      card.style.transition = 'opacity 0.6s cubic-bezier(0.25,1,0.5,1), transform 0.6s cubic-bezier(0.25,1,0.5,1)';
+      card.style.transition =
+        'opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
       card.style.opacity = '1';
-      card.style.transform = 'translateY(0)';
-    }, i * baseDelay);
+      card.style.transform = 'translateY(0) scale(1)';
+      card.classList.add('visible');
+    }, i * 100); // stagger delay
   });
 }
 
-/* ============================================================
-   BACK TO TOP BUTTON
-============================================================ */
+// ========================================================
+// ⬆️ Back to Top Button (Smooth Visibility)
+// ========================================================
 window.addEventListener('scroll', () => {
-  backToTop.style.opacity = window.scrollY > 120 ? '1' : '0';
-  backToTop.style.pointerEvents = window.scrollY > 120 ? 'auto' : 'none';
+  backToTop.style.opacity = window.scrollY > 150 ? '1' : '0';
+  backToTop.style.pointerEvents = window.scrollY > 150 ? 'auto' : 'none';
 });
-
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-/* ============================================================
-   AUTO TAGGING & VIEW COUNTER (Dynamic Badges)
-============================================================ */
+// ========================================================
+// 🏷️ Dynamic Tags Only (No Views)
+// ========================================================
 document.querySelectorAll('.tool-card').forEach((card, index) => {
-  // Add tag (alternate NEW / FREE)
   const tag = document.createElement('div');
-  tag.className = 'tool-tag';
-  tag.textContent = index % 2 === 0 ? 'NEW' : 'FREE';
+  tag.classList.add('tool-tag');
+  tag.innerText = (index % 3 === 0) ? "⭐ Featured" : (index % 2 === 0 ? "NEW" : "FREE");
   card.appendChild(tag);
-
-  // Add random views
-  const views = Math.floor(Math.random() * 40000) + 60000;
-  const formattedViews = `${(views / 1000).toFixed(1)}K`;
-
-  const counter = document.createElement('div');
-  counter.className = 'tool-views';
-  counter.innerHTML = `👁️ ${formattedViews}`;
-  card.appendChild(counter);
 });
 
-/* ============================================================
-   INITIAL LOAD
-============================================================ */
-document.addEventListener('DOMContentLoaded', () => {
+// ========================================================
+// 🚀 Initial Load
+// ========================================================
+document.addEventListener("DOMContentLoaded", () => {
   showSection('all', document.querySelector('.bubble-menu button'));
 });
