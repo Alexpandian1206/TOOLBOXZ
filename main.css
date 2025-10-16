@@ -202,18 +202,13 @@ body {
 
 /* TITLE SECTION */
 .title-section {
-  background: linear-gradient(135deg, #D2042D, #B00227, #FF3A55);
-  background-size: 200% 200%;
-  animation: gradientMove 5s ease infinite;
+  /* fallback solid color */
+  background: #D2042D; 
+  /* radial gradient */
+  background: radial-gradient(circle, rgba(210, 4, 45, 1) 0%, rgba(70, 252, 225, 1) 100%);
   color: white;
   padding: clamp(15px, 3vw, 25px) 20px;
   text-align: center;
-}
-
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 
 .title-section h2 {
@@ -221,7 +216,7 @@ body {
   font-weight: bold;
   margin: 0;
   font-family: 'Merienda', cursive;
-  background: linear-gradient(to right, #ff0000, #000);
+  background: radial-gradient(circle, rgba(210, 4, 45, 1) 0%, rgba(70, 252, 225, 1) 100%);
   background-size: 150% auto;
   color: transparent;
   background-clip: text;
