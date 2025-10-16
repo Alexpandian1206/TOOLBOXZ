@@ -269,6 +269,7 @@ body {
 .tool-card:hover {
   transform: translateY(-8px) scale(1.04);
   box-shadow: 0 15px 35px rgba(255,77,109,0.3);
+  color: #D2042D;
 }
 
 /* TOOL IMAGE */
